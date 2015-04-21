@@ -1,23 +1,15 @@
 from Products.Archetypes.public import *
 from zope.component import adapts
 from zope.interface import implements
-from plone.indexer.decorator import indexer
 from bika.lims.fields import ExtIntegerField
 from bika.lims.interfaces import IBatch
 from bika.health import bikaMessageFactory as _
-from bika.health.interfaces import IBatchHealth
-from bika.vet.interfaces import IBatchVet, IBikaVet
-from archetypes.schemaextender.interfaces import IOrderableSchemaExtender, ISchemaModifier
-
-from Products.Archetypes import atapi
-
-from bika.lims.config import PROJECTNAME as BIKALIMS_PROJECTNAME
-from bika.lims.content.batch import Batch as BaseBatch
+from bika.vet.interfaces import IBatchVet
+from archetypes.schemaextender.interfaces import IOrderableSchemaExtender
 
 class BatchVet(object):
     # This extender will apply to all Archetypes based content
-    adapts(IBatchHealth)
-    #adapts(IOrderableSchemaExtender)
+    adapts(IBatch)
     implements(IOrderableSchemaExtender, IBatchVet)
     #layer = IBikaVet
     fields = [
@@ -68,30 +60,10 @@ class BatchVet(object):
                                 'BatchLabels',
                                 'InheritedObjects',
                                 'InheritedObjectsUI',]
-        import pdb;pdb.set_trace()
         return schematas
 
     def __init__(self, context):
-        import pdb;pdb.set_trace()
         self.context = context
 
     def getFields(self):
-        import pdb;pdb.set_trace()
         return self.fields
-    #fields = [
-    #ExtBooleanField('AAAAAAAAAAA',
-    #default=False,
-    #widget=BooleanWidget(
-    #label = _("AAAAAAAAAAA"),
-    #),
-    #),
-    #]
-
-
-#class BatchVet(BaseBatch):
-#    """ Inherits from bika.content.analysisspec.AnalysisSpec
-#    """
-#    pass
-
-#atapi.registerType(BatchVet, BIKALIMS_PROJECTNAME)
-

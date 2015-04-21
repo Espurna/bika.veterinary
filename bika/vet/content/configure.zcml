@@ -5,7 +5,7 @@
 
     <include package="archetypes.schemaextender" />
     <adapter
-        for="bika.lims.interfaces.IBatch"
+        name="BatchVetAdapter"
         provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
         factory=".batch.BatchVet"
          />
