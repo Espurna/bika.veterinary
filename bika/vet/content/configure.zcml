@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="bika.vet">
+
+    <include package="archetypes.schemaextender" />
+    <adapter
+        for="bika.lims.interfaces.IBatch"
+        provides="archetypes.schemaextender.interfaces.IOrderableSchemaExtender"
+        factory=".batch.BatchVet"
+         />
+  <!-- -*- extra stuff goes here -*- -->
+
+</configure>
